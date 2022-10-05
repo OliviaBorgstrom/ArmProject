@@ -4,13 +4,14 @@ class Piece():
 
     WHITE = "W"
     BLACK = "B"
-
+    
     def __init__(self, x, y, color, piece_type, value):
         self.x = x
         self.y = y
         self.color = color
         self.piece_type = piece_type
         self.value = value
+        self.PIECEDICT = {'WP':'♟', 'BP':'♙', 'WK':'♚', 'BK':'♔', 'WN':'♞', 'BN':'♘', 'WQ':'♛', 'BQ': '♕', 'WR':'♜', 'BR': '♖', 'WB':'♝', 'BB':'♗'}
 
 
 
@@ -115,7 +116,8 @@ class Piece():
         return [move for move in l if move != 0]
 
     def to_string(self):
-        return self.color + self.piece_type + " "
+        text_piece = self.color + self.piece_type
+        return (self.PIECEDICT[self.color + self.piece_type] + "  ")
 
 class Rook(Piece):
 
