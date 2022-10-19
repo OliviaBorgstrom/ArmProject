@@ -138,6 +138,6 @@ class Board:
                 if (piece != 0):
                     string += piece.to_string()
                 else:
-                    string += ".. "
+                    string += ".  "
             string += "\n"
         return string + "\n"

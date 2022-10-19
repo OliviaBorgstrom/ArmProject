@@ -129,25 +129,41 @@ print(board.to_string())
 print("Example Move: A2 A4")
 CURRENTMOVENUM = 0
 
+#Luke said implement a london opening since it is a basic opening that works for most things.
+
 while True:
-    if (CURRENTMOVENUM % 2):
-        colour = pieces.Piece.BLACK
-        print("Current Turn: Black")
-    else:
-        colour = pieces.Piece.WHITE
-        print("Current Turn: White")
-    move = board.get_possible_moves(colour)
+    print("Current Turn: White")
+        
+    move = board.get_possible_moves(pieces.Piece.WHITE)
     if (move == []):
-        if (board.is_check(colour)):
+        if (board.is_check(pieces.Piece.WHITE)):
+            print("Checkmate. White Wins.")
+            break
+        else:
+            print("Stalemate.")
+            break
+        
+    usermove = get_valid_user_move(board, pieces.Piece.WHITE)
+    board.perform_move(usermove)
+    print(board.to_string())
+
+    print("Current Turn: Black")
+
+    move = board.get_possible_moves(pieces.Piece.BLACK)
+    if (move == []):
+        if (board.is_check(pieces.Piece.BLACK)):
             print("Checkmate. Black Wins.")
             break
         else:
             print("Stalemate.")
             break
         
-    usermove = get_valid_user_move(board, colour)
-    board.perform_move(usermove)
+
+    ai_move = ai.AI.get_ai_move(board, [])
+    board.perform_move(ai_move)
+    print("AI move: " + ai_move.to_string())
     print(board.to_string())
+    
     CURRENTMOVENUM += 1
 
 
